@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+spec:
+  rules:
+  - host: app.com
+    http:
+      paths:
+        - pathType: Prefix
+          path: /users
+          backend:
+            service:
+              name: user-api
+              port: 
+                number: 8080
+        - pathType: Prefix
+          path: /products
+          backend:
+            service:
+              name: product-api
+              port: 
+                number: 8081
+        - pathType: Prefix
+          path: /shopping
+          backend:
+            service:
+              name: shopping-api
+              port: 
+                number: 8082
+  ingressClassName: nginx
